@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>EMAUS - Evangelização Católica</title>
+  <!-- Google Fonts: Plus Jakarta Sans & Playfair Display for elegant headings -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,600&amp;display=swap"
+    rel="stylesheet" />
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- Tailwind CSS v3 with plugins -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              orange: '#cf4e17', // Custom Theme Color
+              terracotta: '#A64119',
+              sand: '#F7F3F0',
+              beige: '#E8E1D9',
+              gold: '#D4AF37',
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          borderRadius: {
+            'custom': '8px', // ROUND_EIGHT
+          }
+        }
+      }
+    }
+  </script>
+  <style data-purpose="layout-styles">
+    body {
+      scroll-behavior: smooth;
+      background-color: #F7F3F0;
+      /* brand-sand */
+      background-image: url('imagens/ima_01_fundo.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .hero-overlay {
+      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+    }
+
+    .pillar-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .pillar-card:hover .pillar-icon-container {
+      background-color: #cf4e17;
+      /* bg-brand-orange */
+      color: #ffffff;
+      transform: rotate(10deg) scale(1.1);
+      transition: all 0.4s ease;
+    }
+
+    .pillar-icon-container {
+      transition: all 0.4s ease;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .gallery-item img {
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body class="font-sans text-stone-800">
+  <!-- BEGIN: Navigation -->
+  <nav class="fixed w-full z-50 bg-stone-950 backdrop-blur-md border-b border-stone-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-24">
+        <div class="flex-shrink-0 flex items-center">
+          <a href="code.html#">
+            <img src="imagens/Logo_Branca 2026.png" alt="EMAUS" class="h-14 w-auto">
+          </a>
+        </div>
+        <div class="hidden md:flex space-x-8 items-center">
+          <a class="text-sm font-medium text-stone-300 hover:text-white transition" href="#">Início</a>
+          <a class="text-sm font-medium text-stone-300 hover:text-white transition" href="#quem-somos">Quem Somos</a>
+          <a class="text-sm font-medium text-stone-300 hover:text-white transition" href="#pilares">Pilares</a>
+          <a class="text-sm font-medium text-stone-300 hover:text-white transition" href="#retiros">Nosso Encontro</a>
+          <a class="text-sm font-medium text-stone-300 hover:text-white transition" href="#depoimentos">Testemunhos</a>
+          <a class="bg-brand-orange text-white px-5 py-2 rounded-custom text-sm font-semibold hover:bg-brand-terracotta transition"
+            href="https://wa.link/fefryb">Doações</a>
+        </div>
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-button" class="text-stone-300 hover:text-white transition">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+              <path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden bg-stone-900 border-b border-stone-800 absolute w-full left-0 top-24">
+      <div class="px-4 pt-2 pb-6 space-y-2 flex flex-col">
+        <a class="block text-base font-medium text-stone-300 hover:text-white hover:bg-stone-800 rounded-md px-3 py-2 transition"
+          href="code.html#">Início</a>
+        <a class="block text-base font-medium text-stone-300 hover:text-white hover:bg-stone-800 rounded-md px-3 py-2 transition"
+          href="code.html#quem-somos">Quem Somos</a>
+        <a class="block text-base font-medium text-stone-300 hover:text-white hover:bg-stone-800 rounded-md px-3 py-2 transition"
+          href="code.html#pilares">Pilares</a>
+        <a class="block text-base font-medium text-stone-300 hover:text-white hover:bg-stone-800 rounded-md px-3 py-2 transition"
+          href="code.html#retiros">Nosso Encontro</a>
+        <a class="block text-base font-medium text-stone-300 hover:text-white hover:bg-stone-800 rounded-md px-3 py-2 transition"
+          href="code.html#depoimentos">Testemunhos</a>
+        <div class="pt-4">
+          <a class="block text-center bg-brand-orange text-white px-5 py-3 rounded-custom text-base font-semibold hover:bg-brand-terracotta transition"
+            href="https://wa.link/fefryb">Doações</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- END: Navigation -->
+  <!-- BEGIN: HeroHeader -->
+  <header class="relative h-screen flex items-center justify-center overflow-hidden">
+    <!-- Hero Image Background -->
+    <div class="absolute inset-0 z-0">
+      <img alt="Grupo caminhando ao pôr do sol" class="w-full h-full object-cover object-[center_30%]"
+        src="imagens/Imagem%20de%20fundo.png" />
+      <div class="absolute inset-0 hero-overlay"></div>
+    </div>
+    <div class="relative z-10 text-center px-4 max-w-4xl mt-48 lg:mt-64">
+      <h1 class="font-serif text-4xl md:text-7xl text-white italic mb-6 leading-tight">
+        "Fica conosco, Senhor, pois o dia declina"
+      </h1>
+      <p class="text-white/90 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light">
+        Um caminho de amizade, oração e renovação espiritual para pessoas que buscam o sentido do encontro com o
+        Ressuscitado.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a class="bg-brand-gold hover:bg-[#B8962E] text-stone-900 font-bold px-8 py-4 rounded-custom shadow-lg transition-transform hover:scale-105 inline-block uppercase tracking-wider text-sm"
+          href="https://wa.link/fefryb" target="_blank" rel="noopener noreferrer">
+          Quero Participar
+        </a>
+      </div>
+    </div>
+  </header>
+  <!-- END: HeroHeader -->
+  <!-- BEGIN: Quem Somos -->
+  <section class="py-24 bg-white" id="quem-somos">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Left Column: Text -->
+        <div class="space-y-8">
+          <div>
+            <h2 class="font-serif text-4xl text-brand-terracotta mb-4">Quem Somos</h2>
+            <div class="w-16 h-1 bg-brand-gold rounded-full mb-6"></div>
+          </div>
+
+          <div class="prose prose-stone max-w-none text-stone-600 space-y-4">
+            <p>O <strong>EMAUS</strong> nasceu no dia 09 de outubro de 2024, por uma clara direção do Senhor.</p>
+            <p>Deus colocou em nosso coração o desejo de viver o “Ide” fora das quatro paredes da igreja. Percebemos
+              que, além dos bancos da congregação, há um mundo cheio de pessoas que precisam conhecer o amor e a
+              salvação de Jesus Cristo.</p>
+            <p>Como servos do Senhor, ouvimos o Seu chamado e resolvemos obedecer. Chamamos alguns amigos que também
+              arderam no mesmo propósito e, pela graça e misericórdia de Deus, demos início a este projeto. O que
+              começou como um simples “sim” ao Senhor, transformou-se em uma caminhada linda e contínua, que permanece
+              firme até os dias de hoje.</p>
+            <p>O nome EMAUS carrega um significado profundo para nós: assim como os discípulos tiveram o coração ardendo
+              no caminho para Emaús ao caminharem com o Jesus ressuscitado, desejamos caminhar com as pessoas,
+              anunciando o Evangelho, levando a presença de Cristo e fazendo com que muitos também tenham o seu coração
+              aquecido pelo fogo do Espírito Santo.</p>
+            <p>Não somos uma igreja, mas um grupo de evangelização de rua e de vida. Nosso desejo é levar Jesus para
+              onde as pessoas realmente estão, onde quer que haja uma alma sedenta do amor de Deus. Somos simples, mas
+              apaixonados por Jesus e pelo próximo.</p>
+            <p>Tudo o que fazemos é fruto de oração, obediência e dependência total do Espírito Santo.</p>
+          </div>
+
+          <div class="pt-8 border-t border-brand-beige">
+            <h3 class="font-serif text-2xl text-stone-900 mb-4">Nossa Visão</h3>
+            <p class="text-stone-600">Ser um grupo de evangelização que leva a presença viva de Jesus Cristo às ruas,
+              praças e lugares onde as pessoas realmente estão. Desejamos caminhar ao lado de cada pessoa, assim como
+              Jesus fez no caminho de Emaús, anunciando o Evangelho com amor, poder e simplicidade, para que corações
+              sejam aquecidos, vidas sejam transformadas e muitos venham a conhecer o Senhor de forma real e pessoal.
+            </p>
+            <p class="text-stone-600 mt-4">Não somos uma igreja, mas um movimento de servos apaixonados por Jesus e pelo
+              próximo. Nosso desejo é sair das quatro paredes, depender totalmente do Espírito Santo e obedecer à Grande
+              Comissão onde quer que o Senhor nos enviar.</p>
+          </div>
+
+          <div class="pt-8 border-t border-brand-beige">
+            <h3 class="font-serif text-2xl text-stone-900 mb-4">O que nos inspira</h3>
+            <p class="text-stone-600">Tudo começou com a história dos dois discípulos no caminho de Emaús. Foi
+              exatamente ali, no caminho, que o Jesus ressuscitado se aproximou, caminhou com eles, abriu as Escrituras
+              e fez seus corações arderem.</p>
+
+            <blockquote
+              class="my-6 border-l-4 border-brand-orange pl-4 italic text-stone-700 bg-brand-sand p-4 rounded-r-custom shadow-sm">
+              <p class="mb-2">“E disseram um ao outro: Porventura não se nos abrasava o coração, quando pelo caminho nos
+                falava, e quando nos abria as Escrituras?”</p>
+              <footer class="font-semibold text-brand-terracotta text-sm">— Lucas 24:32</footer>
+            </blockquote>
+
+            <p class="text-stone-600">Que o mesmo Jesus que caminhou com aqueles discípulos, caminhe também conosco e
+              com todos aqueles que encontrarmos nesta jornada.</p>
+            <p class="text-stone-900 font-serif font-bold text-lg mt-6">Seja muito bem-vindo ao EMAUS.</p>
+            <p class="text-brand-orange font-medium mt-1">Que o Senhor te encontre, te chame e faça o teu coração arder
+              por Ele!</p>
+          </div>
+        </div>
+
+        <!-- Right Column: Images Stack -->
+        <div class="relative h-full w-full flex flex-col items-center justify-center gap-6">
+          <img src="EMAUS%20_%20MIDIA/FOTOS/14.jpg" alt="Ação Emaus"
+            class="w-full max-w-md h-auto object-cover rounded-xl shadow-md border-4 border-white transition-transform duration-500 hover:scale-[1.05]">
+          <img src="EMAUS%20_%20MIDIA/FOTOS/01.jpg" alt="Equipe Emaus"
+            class="w-full max-w-md h-auto object-cover rounded-xl shadow-md border-4 border-white transition-transform duration-500 hover:scale-[1.05]">
+          <img src="EMAUS%20_%20MIDIA/FOTOS/20.jpg" alt="Evangelização Emaus"
+            class="w-full max-w-md h-auto object-cover rounded-xl shadow-md border-4 border-white transition-transform duration-500 hover:scale-[1.05]">
+
+          <!-- Decorative Element -->
+          <div
+            class="hidden lg:block absolute top-[40%] right-[-5%] w-32 h-32 bg-brand-gold rounded-full opacity-20 blur-2xl z-[-1]">
+          </div>
+          <div
+            class="hidden lg:block absolute bottom-1/4 left-[-10%] w-40 h-40 bg-brand-terracotta rounded-full opacity-10 blur-3xl z-[-1]">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- END: Quem Somos -->
+  <!-- BEGIN: OurPillars -->
+  <section class="py-24 bg-brand-sand" id="pilares">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-serif text-4xl text-brand-terracotta mb-4">Nossos Pilares</h2>
+        <div class="w-20 h-1 bg-brand-gold mx-auto rounded-full"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Pilar: Encontro -->
+        <div class="pillar-card bg-white p-10 rounded-custom shadow-sm border border-brand-beige text-center group"
+          data-purpose="pilar-encontro">
+          <div class="pillar-icon-container mb-6 inline-block p-4 rounded-full bg-brand-sand text-brand-orange">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+              <path
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path>
+            </svg>
+          </div>
+          <h3 class="font-serif text-2xl mb-4 text-stone-800">Encontro</h3>
+          <p class="text-stone-600 leading-relaxed">
+            A experiência pessoal com o Cristo Ressuscitado que transforma vidas e abre novos horizontes de esperança.
+          </p>
+        </div>
+        <!-- Pilar: Comunhão -->
+        <div class="pillar-card bg-white p-10 rounded-custom shadow-sm border border-brand-beige text-center group"
+          data-purpose="pilar-comunhao">
+          <div class="pillar-icon-container mb-6 inline-block p-4 rounded-full bg-brand-sand text-brand-orange">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+              <path
+                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path>
+            </svg>
+          </div>
+          <h3 class="font-serif text-2xl mb-4 text-stone-800">Comunhão</h3>
+          <p class="text-stone-600 leading-relaxed">
+            Caminhar juntos como irmãos, partilhando o pão, as alegrias e os desafios da vida em comunidade.
+          </p>
+        </div>
+        <!-- Pilar: Missão -->
+        <div class="pillar-card bg-white p-10 rounded-custom shadow-sm border border-brand-beige text-center group"
+          data-purpose="pilar-missao">
+          <div class="pillar-icon-container mb-6 inline-block p-4 rounded-full bg-brand-sand text-brand-orange">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+              <path
+                d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path>
+            </svg>
+          </div>
+          <h3 class="font-serif text-2xl mb-4 text-stone-800">Missão</h3>
+          <p class="text-stone-600 leading-relaxed">
+            Levar a luz do Evangelho a todos os lugares, sendo testemunhas vivas do amor de Deus no mundo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- END: OurPillars -->
+  <!-- BEGIN: UpcomingRetreats -->
+  <section class="py-24 bg-white" id="retiros">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+        <div>
+          <h2 class="font-serif text-4xl text-stone-900 mb-2">Nosso Encontro</h2>
+          <p class="text-brand-orange font-medium">Venha fazer parte dessa família</p>
+        </div>
+
+      </div>
+      <div class="space-y-4" data-purpose="events-list">
+        <!-- Event Item 1 -->
+        <div
+          class="flex flex-col sm:flex-row items-center bg-brand-sand rounded-custom p-6 gap-6 hover:shadow-md transition">
+          <div
+            class="flex-shrink-0 bg-white px-6 py-4 rounded-custom border border-brand-beige text-center min-w-[100px]">
+            <span class="block text-3xl font-bold text-brand-orange">15</span>
+            <span class="block text-xs uppercase tracking-widest text-stone-500 font-bold">MAR</span>
+          </div>
+          <div class="flex-grow text-center sm:text-left">
+            <h4 class="text-xl font-bold text-stone-800 mb-1">Emaus #31</h4>
+            <p class="text-stone-600">Casa Nosso Lar Piedade - Fortaleza, CE</p>
+          </div>
+          <div class="flex-shrink-0">
+            <a href="https://wa.link/fefryb" target="_blank" rel="noopener noreferrer"
+              class="px-6 py-2 border-2 border-brand-orange text-brand-orange font-bold rounded-custom hover:bg-brand-orange hover:text-white transition inline-block">FAÇA
+              PARTE
+            </a>
+          </div>
+        </div>
+        <!-- Event Item 2 -->
+        <div
+          class="flex flex-col sm:flex-row items-center bg-brand-sand rounded-custom p-6 gap-6 hover:shadow-md transition">
+          <div
+            class="flex-shrink-0 bg-white px-6 py-4 rounded-custom border border-brand-beige text-center min-w-[100px]">
+            <span class="block text-3xl font-bold text-brand-orange">29</span>
+            <span class="block text-xs uppercase tracking-widest text-stone-500 font-bold">MAR</span>
+          </div>
+          <div class="flex-grow text-center sm:text-left">
+            <h4 class="text-xl font-bold text-stone-800 mb-1">Emaus #32</h4>
+            <p class="text-stone-600">Casa Nosso Lar Piedade - Fortaleza, CE</p>
+          </div>
+          <div class="flex-shrink-0">
+            <a href="https://wa.link/fefryb" target="_blank" rel="noopener noreferrer"
+              class="px-6 py-2 border-2 border-brand-orange text-brand-orange font-bold rounded-custom hover:bg-brand-orange hover:text-white transition inline-block">FAÇA
+              PARTE
+            </a>
+          </div>
+        </div>
+        <!-- Event Item 3 -->
+        <div class="flex flex-col sm:flex-row items-center bg-brand-sand rounded-custom p-6 gap-6 opacity-75">
+          <div
+            class="flex-shrink-0 bg-white px-6 py-4 rounded-custom border border-brand-beige text-center min-w-[100px]">
+            <span class="block text-3xl font-bold text-stone-400">01</span>
+            <span class="block text-xs uppercase tracking-widest text-stone-400 font-bold">ABR</span>
+          </div>
+          <div class="flex-grow text-center sm:text-left">
+            <h4 class="text-xl font-bold text-stone-500 mb-1">Estudo Bíblico - Discipulado</h4>
+            <p class="text-stone-400">Casa Nosso Lar Piedade - Fortaleza, CE</p>
+          </div>
+          <div class="flex-shrink-0">
+            <button class="px-6 py-2 bg-stone-200 text-stone-500 font-bold rounded-custom cursor-not-allowed">Em
+              breve</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- END: UpcomingRetreats -->
+  <!-- BEGIN: PalavraDoDiaSection -->
+  <section class="py-24 bg-brand-sand/50" id="palavra">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-serif text-4xl text-brand-terracotta mb-4">A PALAVRA DO DIA</h2>
+        <p class="text-stone-600">"Lâmpada para os meus pés é tua palavra, e luz para o meu caminho." (Sl 119:105)</p>
+        <div class="w-20 h-1 bg-brand-gold mx-auto mt-4 rounded-full"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+        <!-- Card 1: Segunda -->
+        <div
+          class="pillar-card bg-white p-6 rounded-custom shadow-sm border border-brand-beige hover:shadow-md transition text-center flex flex-col h-full group">
+          <div class="mb-4">
+            <span
+              class="bg-brand-orange text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-widest">Segunda</span>
+            <span class="block text-stone-400 text-xs font-medium mt-2">16 de Março</span>
+          </div>
+          <h4 class="text-lg font-bold text-stone-800 mb-2">A Paz de Cristo</h4>
+          <p class="text-stone-600 text-sm leading-relaxed mb-4 flex-grow italic">"Deixo a paz a vocês; a minha paz lhes
+            dou. Não a dou como o mundo a dá. Não perturbem o seu coração, nem tenham medo."</p>
+          <div class="text-xs text-brand-terracotta font-semibold mt-auto">
+            João 14:27
+          </div>
+        </div>
+        <!-- Card 2: Terça -->
+        <div
+          class="pillar-card bg-white p-6 rounded-custom shadow-sm border border-brand-beige hover:shadow-md transition text-center flex flex-col h-full group">
+          <div class="mb-4">
+            <span
+              class="bg-brand-gold text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-widest">Terça</span>
+            <span class="block text-stone-400 text-xs font-medium mt-2">17 de Março</span>
+          </div>
+          <h4 class="text-lg font-bold text-stone-800 mb-2">Força na Fraqueza</h4>
+          <p class="text-stone-600 text-sm leading-relaxed mb-4 flex-grow italic">"Mas ele me disse: 'Minha graça é
+            suficiente a você, pois o meu poder se aperfeiçoa na fraqueza'."</p>
+          <div class="text-xs text-brand-terracotta font-semibold mt-auto">
+            2 Coríntios 12:9
+          </div>
+        </div>
+        <!-- Card 3: Quarta -->
+        <div
+          class="pillar-card bg-white p-6 rounded-custom shadow-sm border border-brand-beige hover:shadow-md transition text-center flex flex-col h-full group">
+          <div class="mb-4">
+            <span
+              class="bg-brand-terracotta text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-widest">Quarta</span>
+            <span class="block text-stone-400 text-xs font-medium mt-2">18 de Março</span>
+          </div>
+          <h4 class="text-lg font-bold text-stone-800 mb-2">Confiança Plena</h4>
+          <p class="text-stone-600 text-sm leading-relaxed mb-4 flex-grow italic">"Confie no Senhor de todo o seu
+            coração e não se apoie em seu próprio entendimento."</p>
+          <div class="text-xs text-brand-terracotta font-semibold mt-auto">
+            Provérbios 3:5
+          </div>
+        </div>
+        <!-- Card 4: Quinta -->
+        <div
+          class="pillar-card bg-white p-6 rounded-custom shadow-sm border border-brand-beige hover:shadow-md transition text-center flex flex-col h-full group">
+          <div class="mb-4">
+            <span
+              class="bg-stone-500 text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-widest">Quinta</span>
+            <span class="block text-stone-400 text-xs font-medium mt-2">19 de Março</span>
+          </div>
+          <h4 class="text-lg font-bold text-stone-800 mb-2">O Bom Pastor</h4>
+          <p class="text-stone-600 text-sm leading-relaxed mb-4 flex-grow italic">"O Senhor é o meu pastor; de nada
+            terei falta. Em verdes pastagens me faz repousar e me conduz a águas tranquilas."</p>
+          <div class="text-xs text-brand-terracotta font-semibold mt-auto">
+            Salmos 23:1-2
+          </div>
+        </div>
+        <!-- Card 5: Sexta -->
+        <div
+          class="pillar-card bg-white p-6 rounded-custom shadow-sm border border-brand-beige hover:shadow-md transition text-center flex flex-col h-full group">
+          <div class="mb-4">
+            <span
+              class="bg-[#B8962E] text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-widest">Sexta</span>
+            <span class="block text-stone-400 text-xs font-medium mt-2">20 de Março</span>
+          </div>
+          <h4 class="text-lg font-bold text-stone-800 mb-2">Tudo Posso</h4>
+          <p class="text-stone-600 text-sm leading-relaxed mb-4 flex-grow italic">"Tudo posso naquilo que me fortalece."
+          </p>
+          <div class="text-xs text-brand-terracotta font-semibold mt-auto">
+            Filipenses 4:13
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- END: PalavraDoDiaSection -->
+  <!-- BEGIN: Testimonials -->
+  <section class="py-24 bg-brand-sand relative overflow-hidden" id="depoimentos">
+    <!-- Decorative element -->
+    <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-brand-orange/5 rounded-full blur-3xl"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="font-serif text-4xl text-brand-terracotta mb-4">Corações Ardentes</h2>
+        <p class="text-stone-600">Testemunhos de quem Teve um Encontro com Deus</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12" data-purpose="testimonials-mural">
+        <!-- Testimonial 1 -->
+        <div class="flex flex-col items-center text-center">
+          <div class="w-32 h-32 rounded-full border-4 border-white shadow-lg overflow-hidden mb-6">
+            <img alt="Ana" class="w-full h-full object-cover object-top" src="imagens/Testemunho 2A (2).jpg" />
+          </div>
+          <p class="italic text-stone-700 mb-4 leading-relaxed">
+            "Vivia afogado em álcool e drogas, destruindo minha vida e quase perdendo minha família para sempre. No
+            fundo do poço, encontrei Jesus — e Ele transformou tudo! O vício acabou, a paz voltou, minha família foi
+            restaurada. Jesus é o libertador!"
+          </p>
+          <h5 class="font-bold text-brand-orange">Régis dos Anjos</h5>
+        </div>
+        <!-- Testimonial 2 -->
+        <div class="flex flex-col items-center text-center">
+          <div class="w-32 h-32 rounded-full border-4 border-white shadow-lg overflow-hidden mb-6">
+            <img alt="Mateus" class="w-full h-full object-cover"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2FWbCdA2DxpKoVxTXauHCVhKsG5evrWdzZ0BAQ9lNXfTAMrmifWzPvY0zFT1vwYzTeb29jXwR6XWU9gnN1spXtt0yRRi5xGNWbN87KOWk-fbMyw1EsLnHfz7E0fJgAbCQH6GVM9OETns32xOUqXAP69ERRh342CHvL8beauOoqVjrulCDKbGdsowgUmth0srvUmmi-oQn_CqkfjWhXP9M3tYZAnTnUahQ80E0Xy8NMjDhHVhltKGCXvyBZbe_4O8QGYAYCCpY4PI" />
+          </div>
+          <p class="italic text-stone-700 mb-4 leading-relaxed">
+            "Eu estava perdido e sem rumo. No Emaús, Jesus caminhou ao meu lado e me mostrou que Ele nunca me deixou
+            só."
+          </p>
+          <h5 class="font-bold text-brand-orange">Mateus Silva</h5>
+        </div>
+        <!-- Testimonial 3 -->
+        <div class="flex flex-col items-center text-center">
+          <div class="w-32 h-32 rounded-full border-4 border-white shadow-lg overflow-hidden mb-6">
+            <img alt="Carla" class="w-full h-full object-cover"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuFnW9GlOLDy_knYzodJRTPMfo7HuG8R1gioqSRVVZwJQGP4pH_CpytLeUfShuYPgkkDd4gOYRcjZ33s_Tls12tRcijft_2_WgNi6JRZpOUAX31yOpReQE7GGDJvtfJjPLOmD-AWXr1PRDDT3_RLIf8PZOzFTq5R-eqjV5VIzv95RZd_IQDrLJ8g3HBQZzJOq7u9UKh8U5Y1IGXhzr8Av2UV8GMR7wpNK4_ieqeLgT5BThMMKdjc9QhrUilBxx7E3gBKDGxMi5xas" />
+          </div>
+          <p class="italic text-stone-700 mb-4 leading-relaxed">
+            "A comunhão e a oração que vivemos aqui são o combustível para enfrentar a rotina lá fora com muito mais
+            fé."
+          </p>
+          <h5 class="font-bold text-brand-orange">Carla Mendes</h5>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- END: Testimonials -->
+  <!-- BEGIN: MomentsGallery -->
+  <section class="py-24 bg-white" id="galeria">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-serif text-4xl text-stone-900 mb-4">Galeria de Momentos</h2>
+        <p class="text-stone-600">Lembranças que aquecem a alma e fortalecem o laço</p>
+        <div class="w-20 h-1 bg-brand-gold mx-auto mt-4 rounded-full"></div>
+      </div>
+      <!-- Fotos Gallery Carousel -->
+      <div class="mb-16">
+        <h3 class="font-serif text-2xl text-brand-orange mb-6 text-center">Nossas Fotos</h3>
+        <!-- Swiper -->
+        <div class="swiper photos-swiper rounded-custom overflow-hidden shadow-lg">
+          <div class="swiper-wrapper">
+            <!-- Slide 1 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 1" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/01.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 2 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 2" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/02.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 3 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 3" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/03.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 4 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 4" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/04.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 5 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 5" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/05.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 6 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 6" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/08.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 7 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 7" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/11.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 8 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 8" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/12.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 9 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 9" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/14.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 10 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 10" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/17.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 11 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 11" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/18.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 12 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 12" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/19.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 13 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 13" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/20.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 14 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 14" class="w-full h-full object-contain"
+                src="EMAUS%20_%20MIDIA/FOTOS/25%20%20(1).jpg" loading="lazy" />
+            </div>
+            <!-- Slide 15 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 15" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/26.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 16 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 16" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/28.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 17 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 17" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/29.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 18 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 18" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/31.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 19 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 19" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/32.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 20 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 20" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/33.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 21 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 21" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/34.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 22 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 22" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/37.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 23 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 23" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/39.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 24 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 24" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/42.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 25 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 25" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/43.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 26 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 26" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/48.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 27 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 27" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/50.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 28 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 28" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/52.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 29 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 29" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/54.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 30 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 30" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/56.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 31 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 31" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/60.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 32 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 32" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/61.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 33 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 33" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/62.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 34 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 34" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/65.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 35 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 35" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/66.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 36 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 36" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/67.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 37 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 37" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/68.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 38 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 38" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/69.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 39 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 39" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/72.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 40 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 40" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/74.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 41 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 41" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/77.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 42 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 42" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/79.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 43 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 43" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/80.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 44 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 44" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/82.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 45 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 45" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/83.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 46 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 46" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/84.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 47 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 47" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/88.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 48 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 48" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/90.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 49 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 49" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/91.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 50 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 50" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/95.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 51 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 51" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/96.jpg"
+                loading="lazy" />
+            </div>
+            <!-- Slide 52 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 52" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/98.webp"
+                loading="lazy" />
+            </div>
+            <!-- Slide 53 -->
+            <div class="swiper-slide aspect-video relative group bg-stone-950 flex items-center justify-center">
+              <img alt="Galeria Foto 53" class="w-full h-full object-contain" src="EMAUS%20_%20MIDIA/FOTOS/99.jpg"
+                loading="lazy" />
+            </div>
+          </div>
+          <!-- Add Pagination -->
+          <div class="swiper-pagination photos-pagination"></div>
+          <!-- Add Navigation -->
+          <div class="swiper-button-next photos-next !text-brand-orange"></div>
+          <div class="swiper-button-prev photos-prev !text-brand-orange"></div>
+        </div>
+      </div>
+
+      <!-- Videos Gallery Carousel -->
+      <div>
+        <h3 class="font-serif text-2xl text-brand-orange mb-6 text-center">Nossos Vídeos</h3>
+        <!-- Swiper -->
+        <div class="swiper videos-swiper rounded-custom overflow-hidden shadow-lg">
+          <div class="swiper-wrapper">
+            <!-- Video Slide 1 (YouTube Short) -->
+            <div class="swiper-slide aspect-[9/16] sm:aspect-video bg-white rounded-custom p-2 sm:p-4 flex items-center justify-center shadow-sm border border-brand-beige max-h-[80vh]">
+              <iframe class="w-full h-full rounded bg-stone-950" src="https://www.youtube.com/embed/nwB3Aq8Pdw0?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <!-- Video Slide 2 (YouTube Short) -->
+            <div class="swiper-slide aspect-[9/16] sm:aspect-video bg-white rounded-custom p-2 sm:p-4 flex items-center justify-center shadow-sm border border-brand-beige max-h-[80vh]">
+              <iframe class="w-full h-full rounded bg-stone-950" src="https://www.youtube.com/embed/knLFmgBGDuQ?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <!-- Video Slide 3 (YouTube Short) -->
+            <div class="swiper-slide aspect-[9/16] sm:aspect-video bg-white rounded-custom p-2 sm:p-4 flex items-center justify-center shadow-sm border border-brand-beige max-h-[80vh]">
+              <iframe class="w-full h-full rounded bg-stone-950" src="https://www.youtube.com/embed/IDXltsGBk3c?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          <!-- Add Pagination -->
+          <div class="swiper-pagination videos-pagination"></div>
+          <!-- Add Navigation -->
+          <div class="swiper-button-next videos-next !text-brand-orange"></div>
+          <div class="swiper-button-prev videos-prev !text-brand-orange"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- END: MomentsGallery -->
+  <!-- BEGIN: Footer -->
+  <footer class="bg-stone-900 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12 border-b border-white/10 pb-12">
+        <div class="col-span-1 md:col-span-1">
+          <a href="code.html#">
+            <img src="imagens/Logo_Branca 2026.png" alt="EMAUS" class="h-14 w-auto mb-6">
+          </a>
+          <p class="text-stone-400 text-sm leading-relaxed">
+            Movimento de evangelização focado no encontro pessoal com Jesus e na vida comunitária.
+          </p>
+        </div>
+        <div>
+          <h6 class="font-bold mb-6 uppercase tracking-widest text-xs">Acesso Rápido</h6>
+          <ul class="space-y-3 text-sm text-stone-400">
+            <li><a class="hover:text-brand-orange transition" href="#quem-somos">Quem Somos</a></li>
+            <li><a class="hover:text-brand-orange transition" href="https://wa.link/fefryb" target="_blank"
+                rel="noopener noreferrer">Como Apoiar</a></li>
+          </ul>
+        </div>
+        <div>
+          <h6 class="font-bold mb-6 uppercase tracking-widest text-xs">Redes Sociais</h6>
+          <div class="flex gap-4">
+            <a class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-brand-orange transition"
+              href="#">
+              <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
+                </path>
+              </svg>
+            </a>
+            <a class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-brand-orange transition"
+              href="#">
+              <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+                <path
+                  d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z">
+                </path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-stone-500">
+        <p>© 2023 EMAUS Movimento de Evangelização. Todos os direitos reservados.</p>
+        <div class="flex gap-6">
+          <a class="hover:text-white" href="privacidade.html">Privacidade</a>
+          <a class="hover:text-white" href="termos.html">Termos</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- END: Footer -->
+  <!-- Swiper JS Library -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- Galeria Carousel Scripts -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Configuração base comum para os carrosséis
+      const swiperConfig = {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        breakpoints: {
+          640: { slidesPerView: 1, spaceBetween: 20 },
+          768: { slidesPerView: 2, spaceBetween: 20 },
+          1024: { slidesPerView: 3, spaceBetween: 30 },
+        }
+      };
+
+      // Inicializar Fotos
+      new Swiper('.photos-swiper', {
+        ...swiperConfig,
+        pagination: { el: '.photos-pagination', clickable: true },
+        navigation: { nextEl: '.photos-next', prevEl: '.photos-prev' },
+      });
+
+      // Inicializar Vídeos (com pausa automática no vídeo reproduzindo ao arrastar)
+      const videosSwiper = new Swiper('.videos-swiper', {
+        ...swiperConfig,
+        autoplay: false, // Sem autoplay para vídeos!
+        pagination: { el: '.videos-pagination', clickable: true },
+        navigation: { nextEl: '.videos-next', prevEl: '.videos-prev' },
+        preventClicks: false,
+        preventClicksPropagation: false,
+        noSwipingSelector: 'iframe, video, .swiper-no-swiping',
+        noSwipingClass: 'swiper-no-swiping',
+        touchStartPreventDefault: false,
+        simulateTouch: false, // Prevents mouse drag completely so clicks go to video
+        allowTouchMove: false, // Disables touch dragging entirely on the video slider
+        on: {
+          slideChangeTransitionStart: function () {
+            // Pausa qualquer vídeo tocando ao trocar o slide
+            document.querySelectorAll('.videos-swiper video').forEach(v => v.pause());
+            // Pausa vídeos do YouTube embedded
+            document.querySelectorAll('.videos-swiper iframe').forEach(iframe => {
+              if (iframe.contentWindow) {
+                iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+              }
+            });
+          }
+        }
+      });
+
+      // Mobile Menu Toggle Logic
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+
+        // Clicar em qualquer link do menu deve fechá-lo
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+          });
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
